@@ -10,27 +10,26 @@ if (!API_KEY || !BASE_URL) {
 }
 
 // ***************fetchin data from api **************
-const getWeatherData = async (endpoint, searchParams) => {
-  const url = new URL(`${BASE_URL}/v1/${endpoint}`);
+// const getWeatherData = async (endpoint, searchParams) => {
+//   const url = new URL(`${BASE_URL}/v1/${endpoint}`);
 
-    // url.search = new URLSearchParams({...searchParams,appid: API_KEY});
-      url.search = new URLSearchParams(searchParams);
+//     // url.search = new URLSearchParams({...searchParams,appid: API_KEY});
+//       url.search = new URLSearchParams(searchParams);
 
-      const res = await fetch(url, {
-            headers: {
-               "Access-Control-Allow-Origin": "*",
-                "Content-Type": "application/json",
-            Authorization: `Bearer ${API_KEY}`,
-            },
-        });
-            if (!res.ok) {
-            throw new Error(`API Error: ${res.status}`);
-        }
+//       const res = await fetch(url, {
+//             headers: {
+               
+//             Authorization: `Bearer ${API_KEY}`,
+//             },
+//         });
+//             if (!res.ok) {
+//             throw new Error(`API Error: ${res.status}`);
+//         }
 
-  return res.json();
-  console.log(res)
+//   return res.json();
+//   console.log(res)
  
-};
+// };
 
 
 
@@ -88,21 +87,37 @@ const formatForecastWeather = (data) => {
   return { hourly, daily };
 };
 // *********************searching data from api ********************************
+// const getFormattedWeatherData = async (searchParams) => {
+//   const data = await getWeatherData("weather", {
+//     lat: searchParams.lat,
+//     lon: searchParams.lon,
+//     units: "metric",
+//   });
+
+//   const formattedCurrentWeather = formatCurrent(data);
+
+//   const formattedForecastWeather = formatForecastWeather(data);
+
+//   return {
+//     ...formattedCurrentWeather,
+//     ...formattedForecastWeather,
+//   };
+// };
+
 const getFormattedWeatherData = async (searchParams) => {
-  const data = await getWeatherData("weather", {
-    lat: searchParams.lat,
-    lon: searchParams.lon,
-    units: "metric",
-  });
+  const params = new URLSearchParams(searchParams);
 
-  const formattedCurrentWeather = formatCurrent(data);
+  const res = await fetch(
+    `/.netlify/functions/weather?${params.toString()}`
+  );
 
-  const formattedForecastWeather = formatForecastWeather(data);
+  if (!res.ok) {
+    throw new Error(`API Error: ${res.status}`);
+  }
 
-  return {
-    ...formattedCurrentWeather,
-    ...formattedForecastWeather,
-  };
+  const data = await res.json();
+
+  return formatWeather(data); // keep your existing formatter
 };
 
 
