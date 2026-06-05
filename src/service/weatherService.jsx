@@ -30,6 +30,8 @@ const getWeatherData = async (endpoint, searchParams) => {
  
 };
 
+
+
 // export default getWeatherData;
 // **************************Local time converter function******************************
 const formatToLocalTime = (secs, offset, format="ccc,dd LLLL yyyy' | Local time: 'hh:mm a")=>
@@ -88,8 +90,6 @@ const getFormattedWeatherData = async (searchParams) => {
   const data = await getWeatherData("weather", {
     lat: searchParams.lat,
     lon: searchParams.lon,
-    //  lat: -1.286389,
-    // lon: 36.817223,
     units: "metric",
   });
 

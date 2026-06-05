@@ -30,12 +30,12 @@ const Inputs = ({ setQuery, setUnits }) => {
   return (
     <div className="flex flex-row justify-center my-6">
       {/* SEARCH SECTION */}
-      <div className="flex w-3/4 items-center justify-center space-x-4">
+      <div className="flex w-3/4 items-center justify-center rounded-full">
         <input
           value={city}
           onChange={(e) => setCity(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="text-gray-500 text-xl font-light p-2 w-full capitalize shadow-xl focus:outline-none placeholder:lowercase"
+          className="text-gray-500 text-xl font-light p-2 w-full capitalize shadow-xl pace-x-4 bg-white rounded-full focus:outline-none placeholder:lowercase "
           placeholder="Search city..."
         />
 
@@ -63,12 +63,12 @@ const Inputs = ({ setQuery, setUnits }) => {
 
         <span className="text-2xl font-medium">|</span>
 
-        <button
+        {/* <button
           className="text-2xl font-medium hover:scale-110 transition"
           onClick={() => setUnits("imperial")}
         >
           °F
-        </button>
+        </button> */}
       </div>
     </div>
   );

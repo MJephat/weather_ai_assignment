@@ -7,21 +7,28 @@ import Forecast from './components/Forecast';
 import getFormattedWeatherData from './service/weatherService';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { cities } from "./data/cities";
 
 
 const App = () => {
 
-  const [query,setQuery] =  useState({q: "Nairobi"});
+  const [query,setQuery] =  useState({q: "Nairobi", lat: -1.286389, lon: 36.817223});
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
 
-  const getWeather = async () =>{
-    const cityName = query.q ? query.q: "current location";
+  const getWeather = async ( ) =>{
+     const selectedCity = cities.find(
+          (city) =>
+            city.lat === query.lat &&
+            city.lon === query.lon
+        );
+  
+    const cityName = query.q || selectedCity?.name || "current location";
     toast.info (`Fetching weather data for ${cityName}`)
 
 
     const data = await getFormattedWeatherData( {...query, units})
-    toast.success(`Fetched data for ${data.name || "location"}`);
+    toast.success(`Fetched data for ${cityName}`);
 
    
       setWeather(data);
@@ -32,8 +39,8 @@ const App = () => {
     useEffect(() => {
       getWeather();
     }, [query, units]);
-  // getWeather();
 
+  // getWeather();
   const formatBackground = () =>{
     if(!weather) return " from-cyan-600 to-blue-700";
     const threshhold = units === "metric" ? 20 : 60;
