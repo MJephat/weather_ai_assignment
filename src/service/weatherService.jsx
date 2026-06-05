@@ -10,39 +10,28 @@ if (!API_KEY || !BASE_URL) {
 }
 
 // ***************fetchin data from api **************
-// const getWeatherData = async (endpoint, searchParams) => {
-//   const url = new URL(`${BASE_URL}/v1/${endpoint}`);
-
-//     // url.search = new URLSearchParams({...searchParams,appid: API_KEY});
-//       url.search = new URLSearchParams(searchParams);
-
-//       const res = await fetch(url, {
-//             headers: {
-               
-//             Authorization: `Bearer ${API_KEY}`,
-//             },
-//         });
-//             if (!res.ok) {
-//             throw new Error(`API Error: ${res.status}`);
-//         }
-
-//   return res.json();
-//   console.log(res)
- 
-// };
-
 const getWeatherData = async (endpoint, searchParams) => {
+  const url = new URL(`${BASE_URL}/v1/${endpoint}`);
 
-  const res = await fetch(
-    `/.netlify/functions/weather?lat=${searchParams.lat}&lon=${searchParams.lon}`
-  );
+    // url.search = new URLSearchParams({...searchParams,appid: API_KEY});
+      url.search = new URLSearchParams(searchParams);
 
-  if (!res.ok) {
-    throw new Error(`API Error: ${res.status}`);
-  }
+      const res = await fetch(url, {
+            headers: {
+               
+            Authorization: `Bearer ${API_KEY}`,
+            },
+        });
+            if (!res.ok) {
+            throw new Error(`API Error: ${res.status}`);
+        }
 
   return res.json();
+  console.log(res)
+ 
 };
+
+
 
 
 
