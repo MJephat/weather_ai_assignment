@@ -18,6 +18,8 @@ const getWeatherData = async (endpoint, searchParams) => {
 
       const res = await fetch(url, {
             headers: {
+               "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json",
             Authorization: `Bearer ${API_KEY}`,
             },
         });
