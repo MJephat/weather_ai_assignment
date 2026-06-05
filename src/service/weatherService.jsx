@@ -108,7 +108,7 @@ const getFormattedWeatherData = async (searchParams) => {
   const params = new URLSearchParams(searchParams);
 
   const res = await fetch(
-    `/weather?${params.toString()}`
+    `/?${params.toString()}`
   );
 
   if (!res.ok) {
