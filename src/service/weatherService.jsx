@@ -108,7 +108,7 @@ const getFormattedWeatherData = async (searchParams) => {
   const params = new URLSearchParams(searchParams);
 
   const res = await fetch(
-    `/.netlify/functions/weather?${params.toString()}`
+    `/weather?${params.toString()}`
   );
 
   if (!res.ok) {
