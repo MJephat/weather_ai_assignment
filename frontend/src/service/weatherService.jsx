@@ -2,36 +2,19 @@ import { DateTime } from "luxon";
 
 
 
-const API_KEY = import.meta.env.VITE_API_KEY_ENV;
-const BASE_URL = import.meta.env.VITE_BASE_URL_ENV;
+// Points to your new Render Express server URL
+const BASE_URL = "http://localhost:5000/api"; 
 
-// const API_KEY = "wai_a62a58.0e0ed8547e6aab8bac029bd4b4823f70354877f397699bc5";
-// const BASE_URL = "https://api.weather-ai.co"
-
-if (!API_KEY || !BASE_URL) {
-  console.error("Missing env variables!");
-}
-
-// ***************fetchin data from api **************
 const getWeatherData = async (endpoint, searchParams) => {
-  const url = new URL(`${BASE_URL}/v1/${endpoint}`);
+  // Knocks out /v1/ from original code, backend handles it
+  const url = new URL(`${BASE_URL}/${endpoint}`);
+  url.search = new URLSearchParams(searchParams);
 
-    // url.search = new URLSearchParams({...searchParams,appid: API_KEY});
-      url.search = new URLSearchParams(searchParams);
-
-      const res = await fetch(url, {
-            headers: {
-               
-            Authorization: `Bearer ${API_KEY}`,
-            },
-        });
-            if (!res.ok) {
-            throw new Error(`API Error: ${res.status}`);
-        }
-
+  // No auth headers needed here anymore!
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Proxy Error: ${res.status}`);
+  
   return res.json();
-  console.log(res)
- 
 };
 
 
@@ -96,17 +79,12 @@ const getFormattedWeatherData = async (searchParams) => {
   const data = await getWeatherData("weather", {
     lat: searchParams.lat,
     lon: searchParams.lon,
-    units: "metric",
   });
 
   const formattedCurrentWeather = formatCurrent(data);
-
   const formattedForecastWeather = formatForecastWeather(data);
 
-  return {
-    ...formattedCurrentWeather,
-    ...formattedForecastWeather,
-  };
+  return { ...formattedCurrentWeather, ...formattedForecastWeather };
 };
 
 

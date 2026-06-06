@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@netlify/functions": "^5.3.0",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "luxon": "^3.7.2",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
@@ -32,5 +34,18 @@
     "postcss": "^8.5.15",
     "tailwindcss": "^3.4.19",
     "vite": "^8.0.12"
-  }
+  },
+  "description": "Application designed to consume APIs from [weather](https://weather-ai.co/docs)]",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MJephat/weather_ai_assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MJephat/weather_ai_assignment/issues"
+  },
+  "homepage": "https://github.com/MJephat/weather_ai_assignment#readme"
 }
