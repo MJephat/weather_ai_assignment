@@ -1,5 +1,5 @@
 # Weather_AI_Assignment
-Application designed to consume APIs from [weather](https://weather-ai.co/docs)]
+Application designed to consume APIs from [weather](https://weather-ai.co/docs)
 
 ## Structure
 ###
