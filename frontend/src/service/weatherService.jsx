@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 
 
 // Points to your new Render Express server URL
-const BASE_URL = "http://localhost:5000/api" || import.meta.env.VITE_BASE_URL_ENV || `${window.location.origin}/api`; 
+const BASE_URL = "https://weather-anga.onrender.com/api" || import.meta.env.VITE_BASE_URL_ENV || `${window.location.origin}/api`; 
 
 const getWeatherData = async (endpoint, searchParams) => {
   // Knocks out /v1/ from original code, backend handles it
