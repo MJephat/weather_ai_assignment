@@ -2,11 +2,11 @@ import { DateTime } from "luxon";
 
 
 
-// const API_KEY = import.meta.env.VITE_API_KEY_ENV;
-// const BASE_URL = import.meta.env.VITE_BASE_URL_ENV;
+const API_KEY = import.meta.env.VITE_API_KEY_ENV;
+const BASE_URL = import.meta.env.VITE_BASE_URL_ENV;
 
-const API_KEY = "wai_a62a58.0e0ed8547e6aab8bac029bd4b4823f70354877f397699bc5";
-const BASE_URL = "https://api.weather-ai.co"
+// const API_KEY = "wai_a62a58.0e0ed8547e6aab8bac029bd4b4823f70354877f397699bc5";
+// const BASE_URL = "https://api.weather-ai.co"
 
 if (!API_KEY || !BASE_URL) {
   console.error("Missing env variables!");
