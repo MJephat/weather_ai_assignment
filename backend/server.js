@@ -1,9 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const path = require('path');
 
 const app = express();
 app.use(cors());
+
+
+const cache = new Map();
+const CACHE_DURATION = 5 * 60 * 1000; 
 
 const EXTERNAL_BASE_URL = process.env.BASE_URL_ENV; 
 
@@ -35,6 +40,13 @@ app.get('/api/:endpoint', async (req, res) => {
     console.error("Error:", err.message);
     res.status(500).json({ error: err.message });
   }
+});
+
+//deployment
+app.use(express.static(path.join(__dirname, 'frontend/dist')));
+
+app.get('/*path', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/dist', 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
