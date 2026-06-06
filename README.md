@@ -27,6 +27,8 @@ Backend: npm install dotenv, express, nodemon, cors
 ## Run
 Frontend: npm run dev 
 Backend: npm run dev or npm start
+## Technology
+JavaScript, Node.js, Express, React/Vite
 
 Open: http://localhost:3000/
 Deployed: https://weather-anga.onrender.com/
