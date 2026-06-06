@@ -29,4 +29,4 @@ Frontend: npm run dev
 Backend: npm run dev or npm start
 
 Open: http://localhost:3000/
-Deployed
+Deployed: https://weather-anga.onrender.com/
